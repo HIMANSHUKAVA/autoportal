@@ -17,7 +17,7 @@ import com.main.service.old_car_interface;
 import com.main.service.old_car_payment_interface;
 
 @RestController
-@CrossOrigin(origins = "https://rococo-lollipop-58fe1b.netlify.app")
+//@CrossOrigin(origins = "https://rococo-lollipop-58fe1b.netlify.app")
 @RequestMapping("/buyer")
 public class old_car_payment_controller {
 

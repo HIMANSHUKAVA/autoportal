@@ -174,8 +174,9 @@ public class PaymentService  implements PaymentInterface{
 		
 		
 		String payNowLink =
-			    "https://rococo-lollipop-58fe1b.netlify.app/pay?paymentId="
+			    "https://autoportal-frontend.netlify.app/payment-remainder?paymentId="
 			    + p.getPaymentId();
+
 
 
 		String body = "Dear " + p.getR().getUsername() + ",\n\n"

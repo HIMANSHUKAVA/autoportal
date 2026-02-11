@@ -23,7 +23,7 @@ public class SecurityConfig {
 
         http
    
-            .cors(cors -> cors.disable())
+            .cors(cors -> {})
             .csrf(csrf -> csrf.disable())
 
 

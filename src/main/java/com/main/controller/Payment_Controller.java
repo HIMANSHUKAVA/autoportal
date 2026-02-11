@@ -17,7 +17,7 @@ import com.main.service.PaymentInterface;
 
 @RestController
 @RequestMapping("/buyer")
-@CrossOrigin(origins = "https://rococo-lollipop-58fe1b.netlify.app")
+//@CrossOrigin(origins = "https://rococo-lollipop-58fe1b.netlify.app")
 public class Payment_Controller {
 
     @Autowired

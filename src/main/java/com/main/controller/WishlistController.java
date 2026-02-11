@@ -19,7 +19,6 @@ import com.main.service.WishlistInterface;
 
 @RestController
 @RequestMapping("/buyer")
-@CrossOrigin(origins = "https://rococo-lollipop-58fe1b.netlify.app")
 
 public class WishlistController {
 

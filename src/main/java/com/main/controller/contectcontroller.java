@@ -22,7 +22,7 @@ import com.main.service.contectinterface;
 
 @RestController
 @RequestMapping("/buyer")
-@CrossOrigin(origins = "https://rococo-lollipop-58fe1b.netlify.app")
+//@CrossOrigin(origins = "https://rococo-lollipop-58fe1b.netlify.app")
 public class contectcontroller {
 
 	

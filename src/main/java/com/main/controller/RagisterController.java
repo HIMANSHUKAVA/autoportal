@@ -23,7 +23,7 @@ import com.main.Security.JwtUtil;
 import com.main.entity.Ragister;
 import com.main.service.ragisterinterface;
 
-@CrossOrigin(origins = "https://rococo-lollipop-58fe1b.netlify.app")
+//@CrossOrigin(origins = "https://rococo-lollipop-58fe1b.netlify.app")
 @RestController
 @RequestMapping("/auth")
 public class RagisterController {

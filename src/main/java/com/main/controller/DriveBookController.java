@@ -19,7 +19,7 @@ import com.main.service.BookServiceInterface;
 
 @RestController
 @RequestMapping("/buyer")
-@CrossOrigin(origins = "https://rococo-lollipop-58fe1b.netlify.app")
+//@CrossOrigin(origins = "https://rococo-lollipop-58fe1b.netlify.app")
 public class DriveBookController {
 
 	@Autowired
