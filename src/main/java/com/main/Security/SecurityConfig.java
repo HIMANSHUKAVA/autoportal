@@ -22,35 +22,26 @@ public class SecurityConfig {
     public SecurityFilterChain filterchain(HttpSecurity http) throws Exception {
 
         http
-   
             .cors(cors -> {})
             .csrf(csrf -> csrf.disable())
-
-
             .formLogin(form -> form.disable())
             .httpBasic(basic -> basic.disable())
-
-
             .sessionManagement(session ->
-                session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                    session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             )
-
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers(org.springframework.http.HttpMethod.OPTIONS, "/**").permitAll()
-                .requestMatchers("/auth/**").permitAll()
-
-                .requestMatchers("/buyer/**").hasAuthority("BUYER")
-                .requestMatchers("/seller/**").hasAuthority("SELLER")
-                .requestMatchers("/admin/**").hasAuthority("ADMIN")
-
-
-                .anyRequest().authenticated()
+                    .requestMatchers("/auth/fetch/single/payment/data/**").permitAll()
+                    .requestMatchers("/auth/**").permitAll()
+                    .requestMatchers(org.springframework.http.HttpMethod.OPTIONS, "/**").permitAll()
+                    .requestMatchers("/buyer/**").hasAuthority("BUYER")
+                    .requestMatchers("/seller/**").hasAuthority("SELLER")
+                    .requestMatchers("/admin/**").hasAuthority("ADMIN")
+                    .anyRequest().authenticated()
             )
-
             .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
-        
 
         return http.build();
     }
+
 
 }
