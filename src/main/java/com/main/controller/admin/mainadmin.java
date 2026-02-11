@@ -32,7 +32,7 @@ import com.main.service.Admin.Adminservice;
 import ch.qos.logback.classic.pattern.Util;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "https://rococo-lollipop-58fe1b.netlify.app")
 @RequestMapping("/auth")
 public class mainadmin {
 

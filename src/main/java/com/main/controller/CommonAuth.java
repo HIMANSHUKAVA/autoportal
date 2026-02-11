@@ -14,7 +14,7 @@ import com.main.service.PaymentInterface;
 
 @RestController
 @RequestMapping("/auth")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "https://rococo-lollipop-58fe1b.netlify.app")
 public class CommonAuth {
 
 	@Autowired

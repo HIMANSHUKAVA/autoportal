@@ -18,7 +18,8 @@ import com.main.service.Cartinterface;
 
 @RestController
 @RequestMapping("/buyer")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "https://rococo-lollipop-58fe1b.netlify.app")
+
 public class Cartcontroller {
 
   

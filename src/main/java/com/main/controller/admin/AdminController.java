@@ -44,7 +44,7 @@ import com.main.service.Admin.New_car_img_interface;
 import com.main.service.Admin.old_car_img_interface;
 import com.main.service.sellar.CarRequestInerface;
 
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "https://rococo-lollipop-58fe1b.netlify.app")
 @RestController
 @RequestMapping("/admin")
 public class AdminController {

@@ -174,7 +174,8 @@ public class PaymentService  implements PaymentInterface{
 		
 		
 		String payNowLink =
-				  "http://10.139.32.87:5173/pay?paymentId=" + p.getPaymentId();
+			    "https://rococo-lollipop-58fe1b.netlify.app/pay?paymentId="
+			    + p.getPaymentId();
 
 
 		String body = "Dear " + p.getR().getUsername() + ",\n\n"
