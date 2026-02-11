@@ -174,7 +174,7 @@ public class PaymentService  implements PaymentInterface{
 		
 		
 		String payNowLink =
-			    "https://autoportal-frontend.netlify.app/payment-remainder?paymentId="
+			    "https://autoportal-frontend.netlify.app/pay?paymentId="
 			    + p.getPaymentId();
 
 
