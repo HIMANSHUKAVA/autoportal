@@ -24,30 +24,31 @@ public class SecurityConfig {
         http
             .cors(cors -> {})
             .csrf(csrf -> csrf.disable())
-            .formLogin(form -> form.disable())
-            .httpBasic(basic -> basic.disable())
             .sessionManagement(session ->
                     session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             )
             .authorizeHttpRequests(auth -> auth
-                    // 🔥 VERY IMPORTANT — PUBLIC PAYMENT LINK
+
+                    // ✅ PUBLIC PAYMENT LINK
                     .requestMatchers("/auth/fetch/single/payment/data/**").permitAll()
 
-                    // other public auth endpoints
-                    .requestMatchers("/auth/**").permitAll()
-
+                    // ✅ OPTIONS (CORS)
                     .requestMatchers(org.springframework.http.HttpMethod.OPTIONS, "/**").permitAll()
 
+                    // 🔐 ROLE BASED
                     .requestMatchers("/buyer/**").hasAuthority("BUYER")
                     .requestMatchers("/seller/**").hasAuthority("SELLER")
                     .requestMatchers("/admin/**").hasAuthority("ADMIN")
 
-                    .anyRequest().authenticated()
+                    // बाकी सब
+                    .anyRequest().permitAll()
             )
+
             .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
+
 
 
 
