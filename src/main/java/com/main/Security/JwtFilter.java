@@ -35,6 +35,11 @@ public class JwtFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
             return;
         }
+        if (path.contains("/auth/fetch/single/payment/data/")) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
 
         String header = request.getHeader("Authorization");
 

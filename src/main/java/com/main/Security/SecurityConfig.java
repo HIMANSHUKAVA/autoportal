@@ -30,18 +30,25 @@ public class SecurityConfig {
                     session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             )
             .authorizeHttpRequests(auth -> auth
+                    // 🔥 VERY IMPORTANT — PUBLIC PAYMENT LINK
                     .requestMatchers("/auth/fetch/single/payment/data/**").permitAll()
+
+                    // other public auth endpoints
                     .requestMatchers("/auth/**").permitAll()
+
                     .requestMatchers(org.springframework.http.HttpMethod.OPTIONS, "/**").permitAll()
+
                     .requestMatchers("/buyer/**").hasAuthority("BUYER")
                     .requestMatchers("/seller/**").hasAuthority("SELLER")
                     .requestMatchers("/admin/**").hasAuthority("ADMIN")
+
                     .anyRequest().authenticated()
             )
             .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
+
 
 
 }
