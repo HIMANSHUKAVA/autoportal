@@ -30,16 +30,11 @@ public class JwtFilter extends OncePerRequestFilter {
 
         String path = request.getRequestURI();
 
-        
+        // 🔥 Skip JWT for all auth endpoints
         if (path.startsWith("/auth/")) {
             filterChain.doFilter(request, response);
             return;
         }
-        if (path.contains("/auth/fetch/single/payment/data/")) {
-            filterChain.doFilter(request, response);
-            return;
-        }
-
 
         String header = request.getHeader("Authorization");
 
@@ -73,6 +68,7 @@ public class JwtFilter extends OncePerRequestFilter {
 
         filterChain.doFilter(request, response);
     }
+
 
 
 }
