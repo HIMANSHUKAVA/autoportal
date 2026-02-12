@@ -32,7 +32,7 @@ public class SecurityConfig {
                     // ✅ PUBLIC PAYMENT LINK
                     .requestMatchers("/auth/fetch/single/payment/data/**").permitAll()
 
-                    // ✅ OPTIONS (CORS)
+                    // ✅ OPTIONS (CORS)x
                     .requestMatchers(org.springframework.http.HttpMethod.OPTIONS, "/**").permitAll()
 
                     // 🔐 ROLE BASED
