@@ -7,6 +7,8 @@ import java.sql.Timestamp;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.ManyToAny;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.annotation.Generated;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -44,12 +46,14 @@ public class Payment {
 
 	    @ManyToOne
 	    @JoinColumn(name = "car_id")
+	    @JsonIgnoreProperties({"payments"})
 	    private Cars car;
 
 	    @ManyToOne
 	    @JoinColumn(name = "user_id")
+	    @JsonIgnoreProperties({"payments"})
 	    private Ragister r;
-	    
+
 	    @Column(name = "razorpay_order_id")
 	    private String razorpayOrderId;
 	    

@@ -238,9 +238,10 @@ public class PaymentService  implements PaymentInterface{
 
 	@Override
 	public Payment fetchSinglePaymentData(int id) {
-		// TODO Auto-generated method stub
-		return r.findById(id).orElseThrow();
+	    return r.findById(id)
+	            .orElseThrow(() -> new RuntimeException("Payment not found"));
 	}
+
 
 	
 	
