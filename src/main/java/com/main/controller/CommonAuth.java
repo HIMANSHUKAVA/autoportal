@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.main.entity.Payment;
@@ -30,7 +32,7 @@ public class CommonAuth {
 	}
 	
 	
-	@PostMapping("/auth/payment/link/{paymentid}/{userid}")
+	@PostMapping("/payment/link/{paymentid}/{userid}")
 	public ResponseEntity<Payment>fetchpayment(@PathVariable int paymentid , @PathVariable int userid)
 	{
 		 Payment p = s1.fetchdetausginlink(paymentid, userid);
@@ -38,5 +40,16 @@ public class CommonAuth {
 		 return ResponseEntity.ok(p);
 		 
 	}
+	
+	
+	@PutMapping("/pending/amount/{id}")
+	public ResponseEntity<Payment>updatependingamount(@PathVariable int id  , @RequestParam("amount") double amount)
+	{
+		
+		Payment s = s1.updateamount(id, amount);
+				
+		return  new ResponseEntity<Payment>(s , HttpStatus.OK);
+	}
+	
 	
 }
