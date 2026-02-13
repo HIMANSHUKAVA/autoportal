@@ -21,5 +21,7 @@ public interface PaymentInterface {
 	
 	public Payment fetchSinglePaymentData(int id);
 	
+	public Payment fetchdetausginlink(int paymentid , int userid);
+	
 	
 }

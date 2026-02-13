@@ -243,6 +243,26 @@ public class PaymentService  implements PaymentInterface{
 	}
 
 
+
+
+	@Override
+	public Payment fetchdetausginlink(int paymentid, int userid) {
+		// TODO Auto-generated method stub
+		
+		Ragister s1 = s.findById(userid).orElseThrow(()-> new RuntimeException("user not found")); 
+		
+		Payment p = r.findById(paymentid).orElseThrow(()-> new RuntimeException("Payment Record Not Found"));
+		
+	    if (p.getR() == null || p.getR().getId() != s1.getId()) {
+	        throw new RuntimeException("Unauthorized Access: This payment does not belong to this user");
+	    }
+		
+		
+		return p;
+		
+		}
+
+
 	
 	
 	

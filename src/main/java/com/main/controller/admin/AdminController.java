@@ -111,15 +111,7 @@ public class AdminController {
 
     
 	
-	@PutMapping("/pending/amount/{id}")
-	public ResponseEntity<Payment>updatependingamount(@PathVariable int id  , @RequestParam("amount") double amount)
-	{
-		
-		Payment s = s1.updateamount(id, amount);
-				
-		return  new ResponseEntity<Payment>(s , HttpStatus.OK);
-	}
-	
+
 	
 	
     // VIEW ALL USERS
