@@ -66,32 +66,29 @@ public class mainadmin {
 	}
 	
 	@PostMapping("/login-check")
-	public ResponseEntity<?>logincheck(@RequestParam("email")String email , @RequestParam("password") String password)
-	{
-		
-		Admins s3 =  s.logincheck(email, password);
-		
-		String token =  util.generatetoken(s3.getUsername(), s3.getRole());
-				
+	public ResponseEntity<?> logincheck(
+	        @RequestParam("email") String email,
+	        @RequestParam("password") String password) {
+
+	    Admins s3 = s.logincheck(email, password);
+
 	    if (s3 == null) {
 	        return ResponseEntity
 	                .status(HttpStatus.UNAUTHORIZED)
 	                .body("Invalid email or password");
 	    }
-	    
-		
-		Map<String, Object> response= new HashMap();
-		
-		response.put("user", s3);
-		response.put("token", token);
-		
-		s3.setPassword(null);
-	    
-		
-		
-		return ResponseEntity.ok(response);
+
+	    String token = util.generatetoken(s3.getUsername(), s3.getRole());
+
+	    s3.setPassword(null);
+
+	    Map<String, Object> response = new HashMap<>();
+	    response.put("user", s3);
+	    response.put("token", token);
+
+	    return ResponseEntity.ok(response);
 	}
-	
+
 	
 	
 	

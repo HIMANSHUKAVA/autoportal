@@ -33,21 +33,18 @@ public class Adminservice  implements AdminInterface
 
 	@Override
 	public Admins logincheck(String email, String password) {
-		
-		Optional<Admins> a = r.findEmailadmin(email);
-		
-		if(a.isPresent())
-		{
-			Admins s =  a.get();
-		
-			if(s.getPassword().equals(password))
-			{
-				return s;
-			}
-			
-		}
-		
-		return null;
+
+	    Optional<Admins> a = r.findEmailadmin(email);
+
+	    if(a.isPresent()) {
+	        Admins s = a.get();
+
+	        if(s.getPassword().equals(password)) {
+	            return s;
+	        }
+	    }
+
+	    return null;
 	}
 
 	@Override
