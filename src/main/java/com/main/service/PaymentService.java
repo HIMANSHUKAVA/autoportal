@@ -174,8 +174,10 @@ public class PaymentService  implements PaymentInterface{
 		
 		
 		String payNowLink =
-			    "https://autoportal-frontend.netlify.app/pay?paymentId="
+			    "https://autoportlfrontend.vercel.app/pay?paymentId="
 			    + p.getPaymentId();
+
+
 
 
 
