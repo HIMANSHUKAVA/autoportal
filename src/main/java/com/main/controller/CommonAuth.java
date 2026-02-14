@@ -32,7 +32,7 @@ public class CommonAuth {
 	}
 	
 	
-	@PostMapping("/payment/link/{paymentid}/{userid}")
+	@GetMapping("/payment/link/{paymentid}/{userid}")
 	public ResponseEntity<Payment>fetchpayment(@PathVariable int paymentid , @PathVariable int userid)
 	{
 		 Payment p = s1.fetchdetausginlink(paymentid, userid);
