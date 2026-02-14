@@ -66,11 +66,9 @@ public class mainadmin {
 	}
 	
 	@PostMapping("/login-check")
-	public ResponseEntity<?> logincheck(
-	        @RequestParam("email") String email,
-	        @RequestParam("password") String password) {
+	public ResponseEntity<?> logincheck(@RequestBody Admins request) {
 
-	    Admins s3 = s.logincheck(email, password);
+	    Admins s3 = s.logincheck(request.getEmail(), request.getPassword());
 
 	    if (s3 == null) {
 	        return ResponseEntity
@@ -88,6 +86,7 @@ public class mainadmin {
 
 	    return ResponseEntity.ok(response);
 	}
+
 
 	
 	
