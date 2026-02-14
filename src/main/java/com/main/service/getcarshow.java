@@ -27,4 +27,6 @@ public interface getcarshow {
 	 List<Cars>getfeaturedcar();
 	
 	 public Cars insertcard( Cars c, MultipartFile photo);
+	 
+	 public List<Cars>viewcars();
 }

@@ -182,5 +182,12 @@ public class carservice implements getcarshow {
 		
 		return r.save(s);
 	}
+
+
+	@Override
+	public List<Cars> viewcars() {
+		// TODO Auto-generated method stub
+  return r.findAll();
+	}
 }
  
