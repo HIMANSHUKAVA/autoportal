@@ -109,6 +109,16 @@ public class AdminController {
 		    return ResponseEntity.ok(saved);
 		}
 
+	
+	@GetMapping("/view/anewcar")
+	public ResponseEntity<List<Cars>>viewnewcars(){
+		List<Cars>view = a.viewcars();
+		
+		
+		return new ResponseEntity(view , HttpStatus.OK);
+	}
+	
+	
     
 	
 
