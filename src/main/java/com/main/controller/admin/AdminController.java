@@ -195,7 +195,7 @@ public class AdminController {
 	}
 	
 	
-	@PutMapping("/car/payment/update/status")
+	@PutMapping("/car/payment/update/status/{id}")
 	public ResponseEntity<Payment>UpdatePaymentStatus(@PathVariable int id , @RequestParam String status)
 	{
 		return new ResponseEntity(s1.updatestatus(id, status) , HttpStatus.OK);
