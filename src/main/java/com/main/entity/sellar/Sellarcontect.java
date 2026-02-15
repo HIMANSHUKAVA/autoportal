@@ -27,6 +27,16 @@ public class Sellarcontect {
 	@CreationTimestamp
 	@Column(updatable = false)
 	Timestamp create_at;
+	
+	public String getResolove() {
+		return resolove;
+	}
+
+	public void setResolove(String resolove) {
+		this.resolove = resolove;
+	}
+
+	String resolove;
 
 	public int getId() {
 		return id;

@@ -47,7 +47,7 @@ public class contectservice2 implements  sellarcon
 		Sellarcontect p = r.findById(id).orElseThrow(() -> new RuntimeException("Sellar Not Found"));
 		
 	    p.setStatus(status);
-	    p.setMessage(message);
+	    p.setResolove(message);
 	
 	    
 	    String body =
