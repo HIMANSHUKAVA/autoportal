@@ -32,6 +32,7 @@ import com.main.entity.Ragister;
 import com.main.entity.contect;
 import com.main.entity.admin.Admins;
 import com.main.entity.sellar.Carrequest;
+import com.main.entity.sellar.Sellarcontect;
 import com.main.service.BookServiceInterface;
 import com.main.service.PaymentInterface;
 import com.main.service.contectinterface;
@@ -43,6 +44,7 @@ import com.main.service.Admin.AdminInterface;
 import com.main.service.Admin.New_car_img_interface;
 import com.main.service.Admin.old_car_img_interface;
 import com.main.service.sellar.CarRequestInerface;
+import com.main.service.sellar.sellarcon;
 
 //@CrossOrigin(origins = "https://rococo-lollipop-58fe1b.netlify.app")
 @RestController
@@ -91,6 +93,30 @@ public class AdminController {
 	
 	@Autowired
 	BookServiceInterface s8;
+	
+	
+	@Autowired
+	sellarcon k;
+	
+	@GetMapping("/sellar/contects")
+	public ResponseEntity<Sellarcontect>viewcontectsbysellar()
+	{
+		List<Sellarcontect>y = k.viewsellarcontect();
+		
+		
+		return new ResponseEntity(y , HttpStatus.OK);
+	}
+	
+	@PutMapping("/sellarcontect/status/{id}")
+	public ResponseEntity<Sellarcontect>updatestatusbysellar(@PathVariable int id , @RequestParam String status , @RequestParam String message ){
+		
+		Sellarcontect u = k.updatestatuscontect(id, status, message);
+		
+		return new ResponseEntity(u , HttpStatus.OK);
+	}
+	
+	
+	
 	
 	
 	@PostMapping(

@@ -69,6 +69,31 @@ public class sellerEmail {
 		 }
 		 
 	 }
+	 
+	 
+	 public void CarcontectByadmin(String email , String body)
+	 {
+		 MimeMessage message  = mailSender.createMimeMessage();
+		 
+		 MimeMessageHelper helper = new MimeMessageHelper(message);
+		 
+		 String Subject  = "Quary Abput Portal";
+		 try
+		 {
+			 helper.setText(body);
+			 helper.setSubject(Subject);
+			 helper.setTo(email);
+			 
+			 
+			 mailSender.send(message);
+			 
+			 System.out.println("Message succcess from Sellar");
+		 }
+		 catch(Exception e)
+		 {
+			 e.printStackTrace();
+		 }
+	 }
 
 	
 }

@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +22,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.main.entity.Ragister;
+import com.main.entity.sellar.Sellarcontect;
+import com.main.repo.sellar.Sellarcontects;
 import com.main.service.ragisterinterface;
+import com.main.service.sellar.sellarcon;
 
 @RestController
 @RequestMapping("/sellar")
@@ -32,6 +36,21 @@ public class Commonapi {
 	
 	@Autowired
 	ragisterinterface s;
+	
+	
+	@Autowired
+	sellarcon k;
+	
+	
+	@PostMapping("/contect/s")
+	public ResponseEntity<Sellarcontect>insertsellar(@RequestBody Sellarcontect l)
+	{
+		Sellarcontect o = k.insertcontect(l);
+		
+		return ResponseEntity.ok(o);
+	}
+	
+	
 	
 	
 	
