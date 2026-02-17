@@ -3,8 +3,10 @@ package com.main.controller.admin;
 import java.awt.MediaTracker;
 //import java.awt.PageAttributes.MediaType;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.pulsar.PulsarProperties.Admin;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -97,6 +99,43 @@ public class AdminController {
 	
 	@Autowired
 	sellarcon k;
+	
+	@Autowired
+	AdminInterface si;
+	
+	
+	
+	@PutMapping(value = "/update/admin/prfofile/{id}", 
+            consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	public ResponseEntity<?>updateadminprofile(@PathVariable int id ,
+			@RequestPart("profile") Admins s1 ,
+			@RequestParam String old_password ,
+			 @RequestPart(name = "photo" , required = false) MultipartFile photo ){
+		
+		
+		try
+		{
+			Admins s2 = si.updateadmin(id, s1, photo, old_password);
+			return new ResponseEntity(s2 , HttpStatus.OK);
+		}
+		catch(Exception e) {
+//			e.printStackTrace();
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("message" , e.getMessage()));
+		}
+		
+		
+		
+	}
+	
+
+	@GetMapping("/fetch/single/admins/{id}")
+	public ResponseEntity<Admins>fetchdeta(@PathVariable int id)
+	{
+		Admins p =  si.singledeta(id);
+		
+		return  ResponseEntity.ok(p);
+	}
+	
 	
 	@GetMapping("/sellar/contects")
 	public ResponseEntity<Sellarcontect>viewcontectsbysellar()

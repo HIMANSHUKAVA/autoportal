@@ -97,12 +97,29 @@ public class Adminservice  implements AdminInterface
 		}
 
 		
+		if(a.getRole() != null)
+		{
+			s.setRole(a.getRole());
+		}
 		
+		
+		if(a.getUsername() != null)
+		{
+			s.setUsername(a.getUsername());
+			}
 		return r.save(s);
 		
 		
 		
 		
+	}
+
+	@Override
+	public Admins singledeta(int id) {
+		// TODO Auto-generated method stub
+		
+		Admins o =  r.findById(id).orElseThrow(()-> new RuntimeException("Admin Not Found"));
+		return o;
 	}
 
 

@@ -16,4 +16,8 @@ public interface AdminInterface {
 	Admins logincheck(String email  , String password);
 	void Deleteadmin(int id);
 	
+	public Admins singledeta(int id);
+	
+	
+	
 }
