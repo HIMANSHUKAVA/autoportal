@@ -14,5 +14,12 @@ public interface old_car_payment_interface {
 	List<Old_car_payment>viewall();
 	
 	Old_car_payment updatestatus(int id , String status);
+	public Old_car_payment oldcarpaymentlink(int id);
+	Old_car_payment fetchsinglepaymentbyoldcar(int id);
+	Old_car_payment fetchdetausinglink(int userid , int paymentid);
+//	public List<Old_car_payment>viewall();
+	public Old_car_payment old_doubleAMount(int id , Double Amount);
+	
+	
 	
 }

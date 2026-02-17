@@ -14,6 +14,7 @@ import com.main.entity.Ragister;
 import com.main.repo.Old_car_payment_repo;
 import com.main.repo.old_car_repo;
 import com.main.repo.ragisterrepo;
+import com.main.service.Admin.AdminEmail;
 import com.razorpay.RazorpayException;
 
 @Service
@@ -35,6 +36,11 @@ public class old_Car_payment_service  implements old_car_payment_interface{
 	
 	@Autowired
 	RazorpayService s5;
+	
+	
+	
+	@Autowired
+	AdminEmail a;
 
     
 	
@@ -163,5 +169,90 @@ public class old_Car_payment_service  implements old_car_payment_interface{
 		
 		
 	}
+
+	@Override
+	public Old_car_payment oldcarpaymentlink(int id) {
+		// TODO Auto-generated method stub
+		Old_car_payment p = r.findById(id).orElseThrow(()-> new RuntimeException("Payment Record Nor Found"));
+		
+		
+		String payNowLink =
+			    "https://autoportlfrontend.vercel.app/oldpay?paymentId="
+			    + p.getPaymentId();
+		
+		String body = "Dear " + p.getR().getUsername() + ",\n\n"
+		        + "This is a gentle reminder regarding your pending payment for the car booking.\n\n"
+		        + "Car Details:\n"
+		        + "• Brand: " + p.getCar().getBrand() + "\n"
+		        + "• Model: " + p.getCar().getModel() + "\n"
+		        + "• Type: " + p.getCar().getCarType() + "\n\n"
+		        + "Payment Summary:\n"
+		        + "• Total Amount: ₹" + p.getTotalAmount() + "\n"
+		        + "• Paid Amount: ₹" + p.getPaidBookingAmount() + "\n"
+		        + "• Pending Amount: ₹" + p.getPendingAmount() + "\n\n"
+		        + "To complete your payment, please click the button below:\n\n"
+		        + "👉 PAY NOW: " + payNowLink + "\n\n"
+		        + "This will redirect you to a secure payment page where you can pay the pending amount.\n\n"
+		        + "If you have already made the payment, please ignore this message.\n\n"
+		        + "Thank you for choosing us.\n\n"
+		        + "Regards,\n"
+		        + "Car Booking Team";
+		
+		a.oldcarpaymenteremainder(p.getR().getEmail(), body);
+		
+		return p;
+	}
+
+	@Override
+	public Old_car_payment fetchsinglepaymentbyoldcar(int id) {
+
+		return r.findById(id).orElseThrow(()-> new RuntimeException("payment deta not found"));
+		
+	}
+
+	@Override
+	public Old_car_payment fetchdetausinglink(int userid, int paymentid) {
+		// TODO Auto-generated method stub
+		Ragister s1 = s.findById(userid).orElseThrow(()-> new RuntimeException("user not found")); 
+		Old_car_payment p = r.findById(paymentid).orElseThrow(()-> new RuntimeException("Payment Record Nor Found"));
+		
+		 if (p.getR() == null || p.getR().getId() != s1.getId()) {
+		        throw new RuntimeException("Unauthorized Access: This payment does not belong to this user");
+		    }
+		
+		return p;
+	}
+
+	@Override
+	public Old_car_payment old_doubleAMount(int id, Double Amount) {
+		// TODO Auto-generated method stub
+		Old_car_payment p = r.findById(id).orElseThrow(()-> new RuntimeException("Payment Record Nor Found"));
+		
+		double dbpendingAmount = p.getPendingAmount();
+		double dbBookedamount = p.getPaidBookingAmount();
+		
+		
+		double newbookedamount = dbBookedamount + Amount;
+		
+		double newpendingamount = dbpendingAmount - newbookedamount;
+		
+		
+		p.setPendingAmount(newpendingamount);
+		p.setPaidBookingAmount(newbookedamount);
+		
+		
+		if (newpendingamount <= 0) {
+	        p.setPendingAmount(0);
+	        p.setStatus("RESOLVED");
+	    }
+		
+		return r.save(p);
+	}
+	
+	
+	
+	
+	
+	
 
 }

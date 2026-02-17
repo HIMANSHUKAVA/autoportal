@@ -2,6 +2,7 @@ package com.main.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.main.entity.Old_car_payment;
 import com.main.entity.Payment;
 import com.main.service.PaymentInterface;
+import com.main.service.old_car_payment_interface;
 
 @RestController
 @RequestMapping("/auth")
@@ -22,6 +25,9 @@ public class CommonAuth {
 
 	@Autowired
 	PaymentInterface s1;
+	
+	@Autowired
+	old_car_payment_interface old;
 	
 	@GetMapping("/fetch/single/payment/data/{id}")
 	public ResponseEntity<Payment>FetchSinglePayment(@PathVariable int id)
@@ -40,6 +46,43 @@ public class CommonAuth {
 		 return ResponseEntity.ok(p);
 		 
 	}
+	
+	
+	
+	
+	
+	@GetMapping("/fetch/oldcarlink/payment/{id}")
+	public  ResponseEntity<Old_car_payment>fetchdetaoldcar(@PathVariable int id)
+	{
+		Old_car_payment op =  old.fetchsinglepaymentbyoldcar(id);
+		
+		
+		return ResponseEntity.ok(op);
+	}
+	
+	
+	@GetMapping("/payment/linkbymobail/{paymentid}/{userid}")
+	public ResponseEntity<Payment>fetchpaymentbyoldcar(@PathVariable int paymentid , @PathVariable int userid)
+	{
+		 Old_car_payment p = old.fetchdetausinglink(userid, paymentid);
+		 
+		 return new ResponseEntity(p , HttpStatus.OK);
+		 
+		 
+		 
+	}
+	
+	@PutMapping("/update/oldcarpaidamount/{id}")
+	public ResponseEntity<Old_car_payment>updateoldcaramount(@PathVariable int id  , @RequestParam("amount")
+	Double amount
+	)
+	{
+		Old_car_payment p = old.old_doubleAMount(id,amount);
+		
+		return  ResponseEntity.ok(p);
+		
+	}
+	
 	
 	
 	@PutMapping("/pending/amount/{id}")

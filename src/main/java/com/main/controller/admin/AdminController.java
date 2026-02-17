@@ -104,6 +104,35 @@ public class AdminController {
 	AdminInterface si;
 	
 	
+	@Autowired
+	old_car_payment_interface old;
+	
+	
+	
+	@GetMapping("/fetch/oldcar/payment")
+	public  ResponseEntity <List<Old_car_payment>>fetchdetaoldcar()
+	{
+		List<Old_car_payment> op =  old.viewall();
+		
+		
+		return ResponseEntity.ok(op);
+	}
+	
+	
+	@PostMapping("/oldcarremainder/{id}")
+    public ResponseEntity<Old_car_payment>remainderpaymentbyoldcar(@PathVariable int id)
+    {
+    	Old_car_payment n = old.oldcarpaymentlink(id);
+    	
+    	
+    	return ResponseEntity.ok(n);
+    }
+    
+    
+	
+	
+	
+	
 	
 	@PutMapping(value = "/update/admin/prfofile/{id}", 
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
@@ -206,6 +235,8 @@ public class AdminController {
     	return new ResponseEntity(n , HttpStatus.OK);
     }
     
+    
+
 
     // DELETE USER
     @DeleteMapping("/delete-user/{id}")

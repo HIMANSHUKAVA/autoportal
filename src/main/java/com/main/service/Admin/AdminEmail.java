@@ -46,4 +46,26 @@ public class AdminEmail {
 		
 	}
 	
+	public void oldcarpaymenteremainder(String email , String body) {
+		MimeMessage message = mailsender.createMimeMessage();
+		
+		MimeMessageHelper helper = new MimeMessageHelper(message);
+		
+		try
+		{
+			helper.setTo(email);
+			helper.setSubject("old Car Payment Remainder ");
+			helper.setText(body);
+			
+			
+			mailsender.send(message);
+			
+			System.out.println("Old Car Payment Remainder Succesfull");
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
 }
