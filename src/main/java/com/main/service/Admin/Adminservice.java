@@ -85,12 +85,20 @@ public class Adminservice  implements AdminInterface
 				
 			
 			String filename =  System.currentTimeMillis()  + "-" + file.getOriginalFilename();
-			 file.transferTo(new File("/Users/kavahimanshu/images/" + filename));
-			 
-			 s.setPhoto(filename);
+			String uploadDir = System.getProperty("user.dir") + "/images/";
+			File dir = new File(uploadDir);
+			if (!dir.exists()) {
+			    dir.mkdirs();
+			}
+
+			file.transferTo(new File(uploadDir + filename));
+			s.setPhoto(filename);
+
 			}
 			catch(Exception e)
+			
 			{
+				e.printStackTrace();
 				throw new RuntimeException("Photo not uploaded");
 			}
 			 
