@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfigurationSource;
 
 @EnableWebSecurity
 @Configuration
@@ -19,35 +20,37 @@ public class SecurityConfig {
     JwtFilter filter;
 
     @Bean
-    public SecurityFilterChain filterchain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterchain(HttpSecurity http,
+                                           CorsConfigurationSource corsConfigurationSource)
+            throws Exception {
 
         http
-            .cors(cors -> {})
+            .cors(cors -> cors.configurationSource(corsConfigurationSource))  // 🔥 IMPORTANT
             .csrf(csrf -> csrf.disable())
             .sessionManagement(session ->
                     session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             )
             .authorizeHttpRequests(auth -> auth
 
-                    // ✅ PUBLIC PAYMENT LINK
-                    .requestMatchers("/auth/fetch/single/payment/data/**").permitAll()
-
-                    // ✅ OPTIONS (CORS)x
+                    // ✅ OPTIONS (Preflight)
                     .requestMatchers(org.springframework.http.HttpMethod.OPTIONS, "/**").permitAll()
+
+                    // ✅ Public endpoints
+                    .requestMatchers("/auth/**").permitAll()
 
                     // 🔐 ROLE BASED
                     .requestMatchers("/buyer/**").hasAuthority("BUYER")
                     .requestMatchers("/seller/**").hasAuthority("SELLER")
                     .requestMatchers("/admin/**").hasAuthority("ADMIN")
 
-                    // बाकी सब
-                    .anyRequest().permitAll()
+                    .anyRequest().authenticated()
             )
 
             .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
+
 
 
 
