@@ -53,7 +53,9 @@ public class old_Car_payment_service  implements old_car_payment_interface{
 		
 		
 		Old_car c1 = s1.findById(old_car_id).orElseThrow(() -> new RuntimeException("Car not found"));
-		
+		System.out.println("TOTAL AMOUNT: " + dto.getTotalAmount());
+		System.out.println("PAID BOOKING: " + dto.getPaidBookingAmount());
+
 		if (dto.getPaidBookingAmount() <= 0 ||
 		        dto.getPaidBookingAmount() > dto.getTotalAmount()) {
 		        throw new RuntimeException("Invalid booking amount");
@@ -237,7 +239,8 @@ public class old_Car_payment_service  implements old_car_payment_interface{
 		
 		double newbookedamount = dbBookedamount + Amount;
 		
-		double newpendingamount = dbpendingAmount - newbookedamount;
+		double newpendingamount = dbpendingAmount - Amount;
+
 		
 		
 		p.setPendingAmount(newpendingamount);

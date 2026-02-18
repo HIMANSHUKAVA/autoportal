@@ -36,12 +36,19 @@ public class JwtFilter extends OncePerRequestFilter {
             return;
         }
 
+        
+
         String header = request.getHeader("Authorization");
+
+        System.out.println("JWT FILTER HIT");
+        System.out.println("Authorization Header: " + header);
 
         if (header != null && header.startsWith("Bearer ")) {
 
             String token = header.substring(7);
 
+            
+            
             try {
                 Claims claims = util.validateToken(token);
 
@@ -50,6 +57,7 @@ public class JwtFilter extends OncePerRequestFilter {
 
                 SimpleGrantedAuthority authority =
                         new SimpleGrantedAuthority(role);
+
 
                 UsernamePasswordAuthenticationToken authentication =
                         new UsernamePasswordAuthenticationToken(

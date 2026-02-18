@@ -30,6 +30,10 @@ public class old_car_payment_controller {
 	@PostMapping("/oldcar/payment/add/{user_id}/{old_car_id}")
 	public ResponseEntity<PaymentOrderResponseDTO>insertdeta(@PathVariable int user_id , @PathVariable int old_car_id , @RequestBody PaymentRequestDTO dto)
 	{
+		System.out.println("DTO OBJECT: " + dto);
+	    System.out.println("TOTAL: " + dto.getTotalAmount());
+	    System.out.println("BOOKING: " + dto.getPaidBookingAmount());
+
 		PaymentOrderResponseDTO p1 = r.insertpayment(user_id, old_car_id, dto);
 		
 		

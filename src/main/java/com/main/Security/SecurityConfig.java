@@ -1,10 +1,9 @@
 package com.main.Security;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.graphql.GraphQlProperties.Http;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -25,34 +24,38 @@ public class SecurityConfig {
             throws Exception {
 
         http
-            .cors(cors -> cors.configurationSource(corsConfigurationSource))  // 🔥 IMPORTANT
+            // ✅ CORS Enable
+            .cors(cors -> cors.configurationSource(corsConfigurationSource))
+
+            // ✅ Disable CSRF (JWT project me required)
             .csrf(csrf -> csrf.disable())
+
+            // ✅ Stateless Session (JWT use kar rahe ho)
             .sessionManagement(session ->
                     session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             )
+
+            // ✅ Authorization Rules
             .authorizeHttpRequests(auth -> auth
 
-                    // ✅ OPTIONS (Preflight)
-                    .requestMatchers(org.springframework.http.HttpMethod.OPTIONS, "/**").permitAll()
+                    // 🔥 Preflight requests allow karo
+                    .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 
-                    // ✅ Public endpoints
+                    // 🔓 Public endpoints
                     .requestMatchers("/auth/**").permitAll()
 
-                    // 🔐 ROLE BASED
-                    .requestMatchers("/buyer/**").hasAuthority("BUYER")
-                    .requestMatchers("/seller/**").hasAuthority("SELLER")
-                    .requestMatchers("/admin/**").hasAuthority("ADMIN")
+                    // 🔐 Role based access
+                    .requestMatchers("/buyer/**").hasRole("BUYER")
+                    .requestMatchers("/seller/**").hasRole("SELLER")
+                    .requestMatchers("/admin/**").hasRole("ADMIN")
 
+                    // 🔒 Baaki sab authenticated
                     .anyRequest().authenticated()
             )
 
+            // ✅ JWT Filter Add karo
             .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
-
-
-
-
-
 }
