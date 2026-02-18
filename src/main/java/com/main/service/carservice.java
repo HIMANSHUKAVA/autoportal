@@ -168,8 +168,14 @@ public class carservice implements getcarshow {
 			try
 			{
 			String filename =  System.currentTimeMillis()  + "-" +  photo.getOriginalFilename();
-		    photo.transferTo(new File("/Users/kavahimanshu/images/" + filename));
-		    s.setImage_url("http://localhost:3000/images/" + filename);
+			String uploadDir = System.getProperty("user.dir") + "/images/";
+			File dir = new File(uploadDir);
+			if (!dir.exists()) {
+			    dir.mkdirs();
+			}
+
+			photo.transferTo(new File(uploadDir + filename));
+		   s.setImage_url(filename);
 			}
 			catch(Exception e)
 		    {
