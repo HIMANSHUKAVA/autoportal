@@ -33,3 +33,8 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Application Config (Do Not Push Secrets)
+src/main/resources/application.properties
+src/main/resources/application-prod.properties
+
