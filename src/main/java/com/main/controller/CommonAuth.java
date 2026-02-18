@@ -99,22 +99,12 @@ public class CommonAuth {
 	}
 	
 	@PostMapping("/create-oldcar-pending-order/{paymentid}")
-	public ResponseEntity<String> createPendingOrder(@PathVariable int paymentid) throws RazorpayException {
+	public ResponseEntity<String> createPendingOrder(
+	        @PathVariable int paymentid,
+	        @RequestParam("amount") double amount) throws RazorpayException {
 
-	    Old_car_payment p = old.fetchsinglepaymentbyoldcar(paymentid);
-
-	    if (p.getPendingAmount() <= 0) {
-	        return ResponseEntity.badRequest().body("No pending amount");
-	    }
-
-	    String orderId = s5.createOrder(p.getPendingAmount());
-
-	    p.setRazorpayOrderId(orderId);
-	    old.save(p);
-	    
-
+	    String orderId = s5.createOrder(amount);
 	    return ResponseEntity.ok(orderId);
 	}
 
-	
 }
