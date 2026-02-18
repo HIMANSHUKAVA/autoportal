@@ -31,7 +31,7 @@ public class AdminEmail {
 		
 		try
 		{
-		
+
 		helper.setTo(toemail);
 		helper.setSubject("Payment Remainder");
 		helper.setText(body);

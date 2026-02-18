@@ -62,15 +62,14 @@ public class CommonAuth {
 	
 	
 	@GetMapping("/payment/linkbymobail/{paymentid}/{userid}")
-	public ResponseEntity<Payment>fetchpaymentbyoldcar(@PathVariable int paymentid , @PathVariable int userid)
+	public ResponseEntity<Old_car_payment> fetchpaymentbyoldcar(
+	        @PathVariable int paymentid,
+	        @PathVariable int userid)
 	{
-		 Old_car_payment p = old.fetchdetausinglink(userid, paymentid);
-		 
-		 return new ResponseEntity(p , HttpStatus.OK);
-		 
-		 
-		 
+	     Old_car_payment p = old.fetchdetausinglink(userid, paymentid);
+	     return ResponseEntity.ok(p);
 	}
+
 	
 	@PutMapping("/update/oldcarpaidamount/{id}")
 	public ResponseEntity<Old_car_payment>updateoldcaramount(@PathVariable int id  , @RequestParam("amount")
