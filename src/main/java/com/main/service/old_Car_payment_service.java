@@ -178,7 +178,10 @@ public class old_Car_payment_service  implements old_car_payment_interface{
 		
 		String payNowLink =
 			    "https://autoportlfrontend.vercel.app/oldpay?paymentId="
-			    + p.getPaymentId();
+			    + p.getPaymentId()
+			    + "&userId="
+			    + p.getR().getId();
+
 		
 		String body = "Dear " + p.getR().getUsername() + ",\n\n"
 		        + "This is a gentle reminder regarding your pending payment for the car booking.\n\n"
