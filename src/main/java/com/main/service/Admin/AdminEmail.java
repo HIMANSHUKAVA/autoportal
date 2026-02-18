@@ -53,6 +53,7 @@ public class AdminEmail {
 		
 		try
 		{
+			helper.setFrom("kavahimanshu24@gmail.com");
 			helper.setTo(email);
 			helper.setSubject("old Car Payment Remainder ");
 			helper.setText(body);
