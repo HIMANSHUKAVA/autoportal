@@ -28,13 +28,13 @@ public class JwtFilter extends OncePerRequestFilter {
                                     FilterChain filterChain)
             throws ServletException, IOException {
 
-        String path = request.getRequestURI();
+    	String path = request.getServletPath();
 
-        // 🔥 Skip JWT for all auth endpoints
-        if (path.startsWith("/auth/")) {
-            filterChain.doFilter(request, response);
-            return;
-        }
+    	if (path.startsWith("/auth")) {
+    	    filterChain.doFilter(request, response);
+    	    return;
+    	}
+
 
         
 
