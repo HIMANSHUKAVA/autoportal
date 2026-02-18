@@ -401,6 +401,16 @@ public class AdminController {
 	    Old_car saved = i.insertoldcar(car);
 	    return ResponseEntity.ok(saved);
 	}
+	
+	@PutMapping("/update/oldcar/status/{id}")
+	public ResponseEntity<Old_car_payment> updateoldcarstatus(@PathVariable int id  , @RequestParam String status)
+	{
+		Old_car_payment out = old.updatestatus(id, status);
+		
+		
+		return new ResponseEntity(out , HttpStatus.OK);
+	}
+	
 
 	@PostMapping("/request/view/singleimages/{requestCarId}")
 	public ResponseEntity<Old_car>iops(@PathVariable int requestCarId, @RequestBody Old_car c)
