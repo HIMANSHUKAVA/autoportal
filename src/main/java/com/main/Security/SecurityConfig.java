@@ -40,6 +40,10 @@ public class SecurityConfig {
 
                     // 🔥 Preflight requests allow karo
                     .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                    .requestMatchers("/auth/create-oldcar-pending-order/**").permitAll()
+                    .requestMatchers("/auth/update/oldcarpaidamount/**").permitAll()
+                    .requestMatchers("/auth/payment/**").permitAll()
+                    .requestMatchers("/auth/fetch/**").permitAll()
 
                     // 🔓 Public endpoints
                     .requestMatchers("/auth/**").permitAll()
