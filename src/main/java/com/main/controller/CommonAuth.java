@@ -98,7 +98,7 @@ public class CommonAuth {
 		return  new ResponseEntity<Payment>(s , HttpStatus.OK);
 	}
 	
-	@GetMapping("/create-oldcar-pending-order/{paymentid}")
+	@PostMapping("/create-oldcar-pending-order/{paymentid}")
 	public ResponseEntity<String> createPendingOrder(@PathVariable int paymentid) throws RazorpayException {
 
 	    Old_car_payment p = old.fetchsinglepaymentbyoldcar(paymentid);
