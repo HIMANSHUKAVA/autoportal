@@ -255,6 +255,12 @@ public class old_Car_payment_service  implements old_car_payment_interface{
 		return r.save(p);
 	}
 	
+	@Override
+	public Old_car_payment save(Old_car_payment p) {
+	    return r.save(p);
+	}
+
+	
 	
 	
 	

@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.main.entity.Old_car_payment;
 import com.main.entity.Payment;
 import com.main.service.PaymentInterface;
+import com.main.service.RazorpayService;
 import com.main.service.old_car_payment_interface;
+import com.razorpay.RazorpayException;
 
 @RestController
 @RequestMapping("/auth")
@@ -28,6 +30,9 @@ public class CommonAuth {
 	
 	@Autowired
 	old_car_payment_interface old;
+	
+	@Autowired
+	RazorpayService s5;
 	
 	@GetMapping("/fetch/single/payment/data/{id}")
 	public ResponseEntity<Payment>FetchSinglePayment(@PathVariable int id)
@@ -93,5 +98,23 @@ public class CommonAuth {
 		return  new ResponseEntity<Payment>(s , HttpStatus.OK);
 	}
 	
+	@GetMapping("/create-oldcar-pending-order/{paymentid}")
+	public ResponseEntity<String> createPendingOrder(@PathVariable int paymentid) throws RazorpayException {
+
+	    Old_car_payment p = old.fetchsinglepaymentbyoldcar(paymentid);
+
+	    if (p.getPendingAmount() <= 0) {
+	        return ResponseEntity.badRequest().body("No pending amount");
+	    }
+
+	    String orderId = s5.createOrder(p.getPendingAmount());
+
+	    p.setRazorpayOrderId(orderId);
+	    old.save(p);
+	    
+
+	    return ResponseEntity.ok(orderId);
+	}
+
 	
 }

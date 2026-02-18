@@ -19,6 +19,8 @@ public interface old_car_payment_interface {
 	Old_car_payment fetchdetausinglink(int userid , int paymentid);
 //	public List<Old_car_payment>viewall();
 	public Old_car_payment old_doubleAMount(int id , Double Amount);
+	Old_car_payment save(Old_car_payment p);
+
 	
 	
 	
