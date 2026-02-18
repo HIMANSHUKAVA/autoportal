@@ -54,10 +54,16 @@ public class CarRequestService implements CarRequestInerface {
          {
         	 try
         	 {
-        	 String filename =  System.currentTimeMillis() + "-" +  photo.getOriginalFilename();
-        	 photo.transferTo(new File("/Users/kavahimanshu/images/" + filename));
-        	 a.setPhoto("http://localhost:3000/images/" + filename);
-        	 }
+     			String filename =  System.currentTimeMillis()  + "-" +  photo.getOriginalFilename();
+    			String uploadDir = System.getProperty("user.dir") + "/images/";
+    			File dir = new File(uploadDir);
+    			if (!dir.exists()) {
+    			    dir.mkdirs();
+    			}
+
+    			photo.transferTo(new File(uploadDir + filename));
+    		   s.setPhoto(filename);
+    		   }
         	 catch(Exception e)
         	 {
         		 throw new RuntimeException("Image upload failed", e);
