@@ -22,15 +22,16 @@ public class JwtUtil {
     //  TOKEN GENERATE
     public String generatetoken(String username, String role) {
 
-        return Jwts.builder()
-                .setSubject(username)
-                .claim("role", role)
-                .setIssuedAt(new Date())
-                .setExpiration(
-                        new Date(System.currentTimeMillis() + 86400000)
-                )
-                .signWith(key, SignatureAlgorithm.HS256)
-                .compact();
+    	 return Jwts.builder()
+    	            .setSubject(username)
+    	            .claim("role", "ROLE_" + role)   // 🔥 FIX HERE
+    	            .setIssuedAt(new Date())
+    	            .setExpiration(
+    	                    new Date(System.currentTimeMillis() + 86400000)
+    	            )
+    	            .signWith(key, SignatureAlgorithm.HS256)
+    	            .compact();
+        
     }
 
     //  TOKEN VALIDATE
