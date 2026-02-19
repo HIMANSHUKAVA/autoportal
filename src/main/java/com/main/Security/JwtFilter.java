@@ -30,7 +30,8 @@ public class JwtFilter extends OncePerRequestFilter {
 
     	String path = request.getServletPath();
 
-    	if (path.startsWith("/auth")) {
+    	// 🔥 Bypass public routes
+    	if (path.startsWith("/auth") || path.startsWith("/images")) {
     	    filterChain.doFilter(request, response);
     	    return;
     	}
