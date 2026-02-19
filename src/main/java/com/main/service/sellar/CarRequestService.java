@@ -171,8 +171,14 @@ public class CarRequestService implements CarRequestInerface {
 	    	try
 	    	{
 	    	String filename =  photo.getOriginalFilename();
-	    	 photo.transferTo(new File("/Users/kavahimanshu/images/" + filename));
-	         s2.setPhoto("http://localhost:3000/images/" + filename);
+	    	String uploadDir = System.getProperty("user.dir") + "/images/";
+			File dir = new File(uploadDir);
+			if (!dir.exists()) {
+			    dir.mkdirs();
+			}
+
+			photo.transferTo(new File(uploadDir + filename));
+		   s.setPhoto(filename);
 	    	}
 	    	catch(Exception e)
 	    	{

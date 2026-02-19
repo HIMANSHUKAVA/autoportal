@@ -109,6 +109,12 @@ public class AdminController {
 	
 	
 	
+	@DeleteMapping("/delete/newcar/{id}")
+	public void Deletebyid(@PathVariable int id)
+	{
+		a.Deletecarbyid(id);
+	}
+	
 	@GetMapping("/fetch/oldcar/payment")
 	public  ResponseEntity <List<Old_car_payment>>fetchdetaoldcar()
 	{

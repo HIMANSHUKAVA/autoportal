@@ -28,5 +28,8 @@ public interface getcarshow {
 	
 	 public Cars insertcard( Cars c, MultipartFile photo);
 	 
+	 
+	 public void  Deletecarbyid(int id);
+	 
 	 public List<Cars>viewcars();
 }

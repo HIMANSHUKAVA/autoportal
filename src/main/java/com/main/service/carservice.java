@@ -175,7 +175,7 @@ public class carservice implements getcarshow {
 			}
 
 			photo.transferTo(new File(uploadDir + filename));
-		   s.setImage_url(filename);
+		    s.setImage_url(filename);
 			}
 			catch(Exception e)
 		    {
@@ -194,6 +194,11 @@ public class carservice implements getcarshow {
 	public List<Cars> viewcars() {
 		// TODO Auto-generated method stub
   return r.findAll();
+	}
+	
+	@Override
+	 public void  Deletecarbyid(int id) {
+		r.deleteById(id);
 	}
 }
  
