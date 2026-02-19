@@ -23,7 +23,7 @@ import com.main.service.sellar.CarRequestInerface;
 import com.main.service.sellar.CarRquestImgInterface;
 
 @RestController
-@RequestMapping("/sellar")
+@RequestMapping("/seller")
 //@CrossOrigin(origins = "https://rococo-lollipop-58fe1b.netlify.app")
 
 public class reqcontroller {

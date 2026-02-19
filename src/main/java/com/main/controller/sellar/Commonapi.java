@@ -28,7 +28,7 @@ import com.main.service.ragisterinterface;
 import com.main.service.sellar.sellarcon;
 
 @RestController
-@RequestMapping("/sellar")
+@RequestMapping("/seller")
 //@CrossOrigin(origins = "https://rococo-lollipop-58fe1b.netlify.app")
 
 public class Commonapi {

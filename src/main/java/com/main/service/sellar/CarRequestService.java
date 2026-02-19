@@ -155,7 +155,7 @@ public class CarRequestService implements CarRequestInerface {
 	        .orElseThrow(() -> new RuntimeException("Request Not Found"));
 
 	    if (s.getBrand() != null)
-	        s2.setBrand(null);
+	        s2.setBrand(s.getBrand());
 
 	    if (s.getModel() != null)
 	        s2.setModel(s.getModel());
