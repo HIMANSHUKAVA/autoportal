@@ -50,7 +50,12 @@ public class Old_Car_img_service  implements old_car_img_interface{
 	    oldCar.setYear(request.getYear());
 	    oldCar.setType(request.getType());
 	    oldCar.setCarcondition(request.getCarcondition());
-	    oldCar.setImage_url(request.getPhoto());
+	    List<CarRequestImage> images = repo.findByRequestid_Sellarcarid(requestCarId);
+
+	    if(!images.isEmpty()){
+	        oldCar.setImage_url(images.get(0).getPhotos());
+	    }
+
 
 	   
 	    oldCar.setPrice((int) request.getPrice());
