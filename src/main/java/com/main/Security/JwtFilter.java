@@ -60,7 +60,8 @@ public class JwtFilter extends OncePerRequestFilter {
                 System.out.println("ROLE FROM TOKEN: " + role);
                 
                 SimpleGrantedAuthority authority =
-                		new SimpleGrantedAuthority(role);
+                		new SimpleGrantedAuthority("ROLE_" + role);
+
 
 
 
