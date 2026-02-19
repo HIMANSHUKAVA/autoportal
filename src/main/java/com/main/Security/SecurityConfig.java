@@ -30,6 +30,7 @@ public class SecurityConfig {
             // ✅ Disable CSRF (JWT project me required)
             .csrf(csrf -> csrf.disable())
 
+            
             // ✅ Stateless Session (JWT use kar rahe ho)
             .sessionManagement(session ->
                     session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -41,6 +42,7 @@ public class SecurityConfig {
                     // 🔥 Preflight requests allow karo
                     .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                     .requestMatchers("/auth/create-oldcar-pending-order/**").permitAll()
+                    .requestMatchers("/images/**").permitAll()
                     .requestMatchers("/auth/update/oldcarpaidamount/**").permitAll()
                     .requestMatchers("/auth/payment/**").permitAll()
                     .requestMatchers("/auth/fetch/**").permitAll()
