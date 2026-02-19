@@ -76,9 +76,11 @@ public class mainadmin {
 	                .status(HttpStatus.UNAUTHORIZED)
 	                .body("Invalid email or password");
 	    }
-
-	    String token = util.generatetoken(s3.getUsername(), s3.getRole());
-
+	    String token = util.generatetoken(
+	            s3.getUsername(),
+	            s3.getRole()  
+	    );
+	   
 	    s3.setPassword(null);
 
 	    Map<String, Object> response = new HashMap<>();

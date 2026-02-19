@@ -57,8 +57,12 @@ public class RagisterController {
 		Ragister user = r.login(email, password);
 		
 		
-		String token = util.generatetoken(user.getUsername(), "ROLE_"+user.getRole());
-		
+		String token = util.generatetoken(
+		        user.getUsername(),
+		        user.getRole().name()   // 👈 FIX
+		);
+
+
 		Map<String, Object> response= new HashMap();
 		
 		response.put("user", user);

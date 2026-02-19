@@ -2,7 +2,7 @@ package com.main.entity;
 
 public enum Role {
 
-	
-	  BUYER,
-	  SELLER,
+    BUYER,
+    SELLER,
+    ADMIN   // ADD THIS
 }
