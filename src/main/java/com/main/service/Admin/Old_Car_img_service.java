@@ -64,6 +64,8 @@ public class Old_Car_img_service  implements old_car_img_interface{
 	    Old_car savedCar = l.save(oldCar);
 
 	    System.out.println("Saved Car ID: " + savedCar.getId());
+	    System.out.println("PHOTO FROM REQUEST: " + request.getPhoto());
+
 
 	    return savedCar;
 	}
