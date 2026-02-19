@@ -419,13 +419,12 @@ public class AdminController {
 	
 
 	@PostMapping("/request/view/singleimages/{requestCarId}")
-	public ResponseEntity<Old_car>iops(@PathVariable int requestCarId, @RequestBody Old_car c)
+	public ResponseEntity<?> approve(@PathVariable int requestCarId)
 	{
-		
-		Old_car u = p.insertOldCarFromRequest(requestCarId, c);
-		return new ResponseEntity(u , HttpStatus.OK);
+	    Old_car u = p.insertOldCarFromRequest(requestCarId);
+	    return ResponseEntity.ok(u);
 	}
-	
+
 	
 	@PutMapping("/request/drivestatus/{id}")
 	public ResponseEntity<BookDrive>updateBookdrive(@PathVariable int id , @RequestParam String status)

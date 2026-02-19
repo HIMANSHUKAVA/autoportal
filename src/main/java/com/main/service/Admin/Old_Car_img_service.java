@@ -32,34 +32,42 @@ public class Old_Car_img_service  implements old_car_img_interface{
 	
 	@Override
 	@Transactional
-	public Old_car insertOldCarFromRequest(int requestCarId, Old_car car) {
+	public Old_car insertOldCarFromRequest(int requestCarId) {
 
-	    
-	    Carrequest t = o.findById(requestCarId).orElseThrow();
-	    
-	    t.setStatus("APPROVED");
-	    o.save(t);
+	    Carrequest request = o.findById(requestCarId)
+	            .orElseThrow(() -> new RuntimeException("Request not found"));
 
-	    
-	 // 1️ save old car
-	    Old_car savedCar = l.save(car);
-	    
-	    // 2️fetch request images
-	    List<CarRequestImage> requestImages =
-	        repo.findByRequestid_Sellarcarid(requestCarId);
+	    request.setStatus("APPROVED");
 
-	    // 3️ copy URLs
-	    for (CarRequestImage img : requestImages) {
+	    Old_car oldCar = new Old_car();
 
-	        old_CarImage oldImg = new old_CarImage();
-	        oldImg.setCar(savedCar);   // FK
-	        oldImg.setUrl(img.getPhotos()); // sirf URL
+	    oldCar.setBrand(request.getBrand());
+	    oldCar.setModel(request.getModel());
+	    oldCar.setFuel(request.getFuel());
+	    oldCar.setTransmission(request.getTransmission());
+	    oldCar.setColor(request.getColour());
+	    oldCar.setKm_driven(request.getKm_driven());
+	    oldCar.setYear(request.getYear());
+	    oldCar.setType(request.getType());
+	    oldCar.setCarcondition(request.getCarcondition());
+	    oldCar.setImage_url(request.getPhoto());
 
-	        r.save(oldImg);
-	    }
+	   
+	    oldCar.setPrice((int) request.getPrice());
+	    oldCar.setPriceMin(request.getPriceMin());
+	    oldCar.setPriceMax(request.getPriceMax());
+	    oldCar.setPriceLabel(request.getPriceLabel());
+
+	    oldCar.setDescription("Approved car");
+	    oldCar.setCarType("OLD");
+
+	    Old_car savedCar = l.save(oldCar);
+
+	    System.out.println("Saved Car ID: " + savedCar.getId());
 
 	    return savedCar;
 	}
+
 
 
 
