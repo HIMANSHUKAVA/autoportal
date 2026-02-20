@@ -58,13 +58,7 @@ public class mainadmin {
 	
 	
 
-	@DeleteMapping("/delete")
-	public void deleteadmin(@PathVariable int id)
-	{
-		s.Deleteadmin(id);
-		
-		
-	}
+	
 	
 	@PostMapping("/login-check")
 	public ResponseEntity<?> logincheck(@RequestBody Admins request) {

@@ -108,6 +108,13 @@ public class AdminController {
 	old_car_payment_interface old;
 	
 	
+	@DeleteMapping("/deleteadminfromid/{id}")
+	public void deletebyidfromadmin(@PathVariable int id)
+	{
+		op.Deleteadmin(id);
+	}
+	
+	
 	
 	@DeleteMapping("/delete/newcar/{id}")
 	public void Deletebyid(@PathVariable int id)
