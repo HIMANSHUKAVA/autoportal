@@ -66,6 +66,12 @@ public class CarReuqestController {
 	
 
 
+	@DeleteMapping("/delete/carbyid/{id}")
+	public void deletecarbyid(@PathVariable int id)
+	{
+		s1.deleterequest(id);
+	}
+	
 	
 	@GetMapping("/request/get/{id}")
 	public ResponseEntity<Carrequest> singledeta(@PathVariable int id)

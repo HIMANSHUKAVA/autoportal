@@ -115,7 +115,6 @@ public class AdminController {
 	}
 	
 	
-	
 	@DeleteMapping("/delete/newcar/{id}")
 	public void Deletebyid(@PathVariable int id)
 	{
