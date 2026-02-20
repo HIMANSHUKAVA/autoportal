@@ -55,8 +55,12 @@ public class Old_Car_img_service  implements old_car_img_interface{
 	    if(!images.isEmpty()){
 	        oldCar.setImage_url(images.get(0).getPhotos());
 	    }
+	    else {
+	        oldCar.setImage_url("mahindra-xuv.avif"); //  default path
+	    }
 
 
+	 
 	   
 	    oldCar.setPrice((int) request.getPrice());
 	    oldCar.setPriceMin(request.getPriceMin());

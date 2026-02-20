@@ -70,6 +70,12 @@ public class CarRequestService implements CarRequestInerface {
         	 }
          }
          
+         else {
+        	 s.setPhoto("mahindra-xuv.avif");
+ 	    }
+
+
+         
          
          
          String body =
